@@ -33,7 +33,7 @@ export default function CTA() {
             <Button
               variant="secondary"
               size="lg"
-              href="/signup"
+              href="https://zdashboard.vercel.app/register"
               className="!bg-white !text-primary hover:!bg-gray-100"
             >
               Start Free Trial

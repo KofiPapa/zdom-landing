@@ -51,10 +51,10 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" href="/signin">
+          <Button variant="ghost" size="sm" href="https://zdashboard.vercel.app/login">
             Sign In
           </Button>
-          <Button variant="primary" size="sm" href="/signup">
+          <Button variant="primary" size="sm" href="https://zdashboard.vercel.app/register">
             Start Free Trial
           </Button>
         </div>
@@ -84,10 +84,10 @@ export default function Navbar() {
               </a>
             ))}
             <hr className="border-gray-100" />
-            <Button variant="ghost" size="sm" href="/signin">
+            <Button variant="ghost" size="sm" href="https://zdashboard.vercel.app/login">
               Sign In
             </Button>
-            <Button variant="primary" size="sm" href="/signup">
+            <Button variant="primary" size="sm" href="https://zdashboard.vercel.app/register">
               Start Free Trial
             </Button>
           </Container>

@@ -93,7 +93,7 @@ export default function Pricing() {
                 <Button
                   variant={plan.popular ? 'primary' : 'outline'}
                   className="w-full"
-                  href={plan.name === 'Enterprise' ? '/contact' : '/signup'}
+                  href={plan.name === 'Enterprise' ? '/contact' : 'https://zdashboard.vercel.app/register'}
                 >
                   {plan.cta}
                 </Button>

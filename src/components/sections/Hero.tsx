@@ -87,7 +87,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
-            <Button variant="primary" size="lg" href="/signup">
+            <Button variant="primary" size="lg" href="https://zdashboard.vercel.app/register">
               Start Free Trial
             </Button>
             <Button variant="outline" size="lg" href="#how-it-works">
