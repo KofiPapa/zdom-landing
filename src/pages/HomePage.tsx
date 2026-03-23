@@ -3,6 +3,7 @@ import LogoBar from '../components/sections/LogoBar'
 import Features from '../components/sections/Features'
 import HowItWorks from '../components/sections/HowItWorks'
 import UseCases from '../components/sections/UseCases'
+import Portfolio from '../components/sections/Portfolio'
 import Pricing from '../components/sections/Pricing'
 import Testimonials from '../components/sections/Testimonials'
 import FAQ from '../components/sections/FAQ'
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Features />
       <HowItWorks />
       <UseCases />
+      <Portfolio />
       <Pricing />
       <Testimonials />
       <FAQ />
