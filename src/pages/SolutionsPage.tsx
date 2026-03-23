@@ -13,42 +13,52 @@ const solutions = [
     description: 'Promote daily specials, showcase new arrivals, and create engaging in-store experiences that drive purchases. Digital menu boards, window displays, and wayfinding — all managed from one dashboard.',
     benefits: ['Digital menu boards & pricing', 'Promotional displays & offers', 'Window signage automation', 'Queue management displays', 'Multi-location content sync'],
     color: 'from-orange-500 to-red-500',
+    image: '/images/portfolio/ramonas-kitchen.png',
+    imageLabel: "Ramona's Kitchen — Restaurant Menu Wall",
   },
   {
-    id: 'healthcare',
+    id: 'fastfood',
     icon: MdLocalHospital,
-    title: 'Healthcare',
-    subtitle: 'Improve patient experience',
-    description: 'Keep patients informed with wait times, wayfinding, health tips, and appointment information. Reduce perceived wait times and improve communication across your facility.',
-    benefits: ['Waiting room information', 'Wayfinding & directories', 'Health education content', 'Emergency alerts & notifications', 'HIPAA-compliant infrastructure'],
+    title: 'Fast Food & QSR',
+    subtitle: 'Boost orders with combo boards',
+    description: 'Numbered combo displays, student deals, and limited-time offers that catch attention and increase average order value. Update pricing across all locations in seconds.',
+    benefits: ['Numbered combo displays', 'Student & time-based pricing', 'Multi-screen menu layouts', 'Drive-thru menu boards', 'Centralized pricing updates'],
     color: 'from-blue-500 to-cyan-500',
+    image: '/images/portfolio/pizza-combos.png',
+    imageLabel: 'Pizza & Poutine — Combo Display System',
   },
   {
-    id: 'hospitality',
+    id: 'cafes',
     icon: MdHotel,
-    title: 'Hospitality',
-    subtitle: 'Elevate your guest experience',
-    description: 'Welcome guests with personalized displays, showcase amenities, promote events, and provide real-time information throughout your property.',
-    benefits: ['Lobby welcome displays', 'Event & conference signage', 'Restaurant menu boards', 'Concierge information screens', 'Pool & amenity schedules'],
+    title: 'Cafes & Dessert Shops',
+    subtitle: 'Showcase every flavor beautifully',
+    description: 'From bubble tea to ice cream rolls, display your full menu with mouth-watering visuals. Portrait screens for tight spaces, detailed descriptions, and seasonal rotations on auto-pilot.',
+    benefits: ['Portrait menu boards for small spaces', 'Detailed flavor descriptions & photos', 'Seasonal menu auto-rotation', 'Step-by-step ordering instructions', 'Vivid colors that attract foot traffic'],
     color: 'from-purple-500 to-pink-500',
+    image: '/images/portfolio/ice-cream-shop.png',
+    imageLabel: 'Rolly Polly — Ice Cream Menu Boards',
   },
   {
-    id: 'education',
+    id: 'retail-store',
     icon: MdSchool,
-    title: 'Education',
-    subtitle: 'Connect your campus',
-    description: 'Engage students and staff with campus news, event schedules, emergency alerts, and wayfinding. Keep your entire campus informed and connected.',
-    benefits: ['Campus announcements', 'Event calendars & schedules', 'Emergency notification system', 'Cafeteria menu displays', 'Department directories'],
+    title: 'Retail Stores',
+    subtitle: 'In-store brand experiences',
+    description: 'Highlight brands, showcase product demos, and promote seasonal campaigns with digital displays that customers actually notice. From paint stores to boutiques, any retail space transforms.',
+    benefits: ['Brand partner showcases', 'Product demo & how-to videos', 'Seasonal campaign rotation', 'Window display automation', 'Works on any TV or monitor'],
     color: 'from-green-500 to-emerald-500',
+    image: '/images/portfolio/paint-store.png',
+    imageLabel: 'Burlington Paint — Brand Showcase Display',
   },
   {
-    id: 'corporate',
+    id: 'multi-location',
     icon: MdBusiness,
-    title: 'Corporate',
-    subtitle: 'Empower internal communications',
-    description: 'Keep employees informed and engaged with KPI dashboards, company news, meeting room displays, and visitor management across all your offices.',
-    benefits: ['KPI & analytics dashboards', 'Meeting room signage', 'Company news & updates', 'Visitor welcome screens', 'Multi-office synchronization'],
+    title: 'Multi-Location Chains',
+    subtitle: 'One dashboard, every screen',
+    description: 'Whether you have 2 locations or 200, manage content across your entire network from a single dashboard. Push updates simultaneously, maintain brand consistency, and monitor every screen remotely.',
+    benefits: ['Push content to all locations at once', 'Group screens by store or region', 'Per-location menu customization', 'Remote monitoring & health checks', 'Franchise-ready management tools'],
     color: 'from-indigo-500 to-blue-500',
+    image: '/images/portfolio/burgerim.png',
+    imageLabel: 'Burgerim — Multi-Location Chain Displays',
   },
 ]
 
@@ -80,7 +90,7 @@ export default function SolutionsPage() {
       {/* Solutions */}
       <section className="py-16 lg:py-24">
         <Container>
-          <div className="space-y-20">
+          <div className="space-y-24">
             {solutions.map((sol, i) => (
               <motion.div
                 key={sol.id}
@@ -113,8 +123,21 @@ export default function SolutionsPage() {
                     Get Started Free
                   </Button>
                 </div>
-                <div style={{ direction: 'ltr' }} className="bg-gradient-to-br from-gray-50 to-orange-50 rounded-2xl aspect-[4/3] flex items-center justify-center border border-gray-100">
-                  <sol.icon size={80} className="text-gray-200" />
+
+                {/* Real image */}
+                <div style={{ direction: 'ltr' }} className="relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/50 border border-gray-100 group">
+                  <img
+                    src={sol.image}
+                    alt={sol.imageLabel}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                      {sol.imageLabel}
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}
