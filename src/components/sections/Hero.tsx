@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MdPlayArrow, MdCheck } from 'react-icons/md'
 import Container from '../ui/Container'
@@ -41,7 +41,25 @@ const heroChecks = [
   'Setup in 5 minutes',
 ]
 
+const heroImages = [
+  { src: '/images/portfolio/ramonas-kitchen.png', label: "Ramona's Kitchen — 4 Screens" },
+  { src: '/images/portfolio/burgerim.png', label: 'Burgerim — Multi-Display Setup' },
+  { src: '/images/portfolio/bubble-tea-shop.png', label: 'Bubble Tea Bar — 5 Screens' },
+  { src: '/images/portfolio/pizza-combos.png', label: 'Pizza & Poutine — Combo Displays' },
+  { src: '/images/portfolio/red-menu-board.png', label: 'Soul Food Kitchen — Menu Boards' },
+]
+
 export default function Hero() {
+  const [activeImage, setActiveImage] = useState(0)
+
+  // Auto-cycle images
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % heroImages.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #ECF7FF 0%, #FFFFFF 40%, #FFF3EC 100%)' }}>
       {/* Subtle background shapes */}
@@ -113,61 +131,109 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: Dashboard Mockup */}
+          {/* Right: Real Client Showcase */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative"
           >
-            <div className="relative bg-white rounded-2xl shadow-2xl shadow-gray-200/60 border border-gray-100 p-3 overflow-hidden">
-              <div className="bg-gradient-to-br from-secondary via-secondary to-primary rounded-xl aspect-video flex items-center justify-center">
-                <div className="text-center text-white p-6 w-full">
-                  <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto">
-                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                      <div className="w-full h-2 bg-white/30 rounded mb-2" />
-                      <div className="w-3/4 h-2 bg-white/20 rounded mb-3" />
-                      <div className="w-full h-14 bg-white/15 rounded" />
-                    </div>
-                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                      <div className="w-full h-16 bg-white/15 rounded mb-2" />
-                      <div className="w-full h-2 bg-white/30 rounded mb-2" />
-                      <div className="w-2/3 h-2 bg-white/20 rounded" />
-                    </div>
-                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3 col-span-2">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary/40 rounded-full flex-shrink-0" />
-                        <div className="flex-1">
-                          <div className="w-full h-2 bg-white/30 rounded mb-2" />
-                          <div className="w-3/4 h-2 bg-white/20 rounded" />
-                        </div>
-                      </div>
-                    </div>
+            {/* Main image carousel */}
+            <div className="relative bg-slate-900 rounded-2xl shadow-2xl shadow-gray-300/50 border border-gray-200/60 overflow-hidden">
+              {/* Browser chrome */}
+              <div className="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-400" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                </div>
+                <div className="flex-1 ml-3">
+                  <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 text-center max-w-xs mx-auto">
+                    zplayer-blue.vercel.app
                   </div>
                 </div>
               </div>
+
+              {/* Image area */}
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeImage}
+                    src={heroImages[activeImage].src}
+                    alt={heroImages[activeImage].label}
+                    className="w-full h-full object-cover"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </AnimatePresence>
+
+                {/* Gradient overlay at bottom for text */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent h-20" />
+
+                {/* Label */}
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                  <span className="text-white text-sm font-medium">
+                    {heroImages[activeImage].label}
+                  </span>
+                  <span className="bg-primary/90 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                    Live
+                  </span>
+                </div>
+              </div>
+
+              {/* Dot indicators */}
+              <div className="bg-slate-800 px-4 py-2 flex items-center justify-center gap-2">
+                {heroImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImage(i)}
+                    className={`transition-all duration-300 rounded-full ${
+                      i === activeImage
+                        ? 'w-6 h-2 bg-primary'
+                        : 'w-2 h-2 bg-slate-600 hover:bg-slate-500'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Floating badges */}
+            {/* Floating thumbnail previews */}
             <motion.div
               animate={{ y: [-6, 6, -6] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-4 top-6 bg-white rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 p-3 hidden lg:block"
+              className="absolute -right-3 top-8 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 p-1.5 hidden lg:block"
             >
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-400 rounded-full" />
-                <span className="text-sm font-medium text-gray-700">5 Screens Online</span>
-              </div>
+              <img
+                src="/images/portfolio/paint-store.png"
+                alt="Retail display"
+                className="w-24 h-16 object-cover rounded-lg"
+              />
+              <p className="text-[10px] text-gray-500 mt-1 text-center font-medium">Retail Display</p>
             </motion.div>
+
             <motion.div
               animate={{ y: [6, -6, 6] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 bottom-10 bg-white rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 p-3 hidden lg:block"
+              className="absolute -left-3 bottom-16 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 p-1.5 hidden lg:block"
             >
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-primary rounded-full" />
-                <span className="text-sm font-medium text-gray-700">Content Updated</span>
-              </div>
+              <img
+                src="/images/portfolio/ice-cream-shop.png"
+                alt="Ice cream menu"
+                className="w-24 h-16 object-cover rounded-lg"
+              />
+              <p className="text-[10px] text-gray-500 mt-1 text-center font-medium">Menu Board</p>
+            </motion.div>
+
+            {/* Live status badge */}
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute -right-2 bottom-20 bg-white rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 px-3 py-2 hidden lg:flex items-center gap-2"
+            >
+              <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-xs font-semibold text-gray-700">5 Screens Online</span>
             </motion.div>
           </motion.div>
         </div>
