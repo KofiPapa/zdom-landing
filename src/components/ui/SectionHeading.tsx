@@ -5,10 +5,12 @@ export default function SectionHeading({
   label,
   title,
   subtitle,
+  dark = false,
 }: {
   label?: string
   title: string
   subtitle?: string
+  dark?: boolean
 }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 })
 
@@ -21,17 +23,20 @@ export default function SectionHeading({
       className="text-center max-w-3xl mx-auto mb-16"
     >
       {label && (
-        <span className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-primary-light font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full mb-4">
-          <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-secondary animate-pulse" />
+        <span className={`inline-flex items-center gap-2 font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full mb-4 ${
+          dark ? 'bg-white/10 text-orange-300' : 'bg-orange-50 text-primary border border-orange-100'
+        }`}>
+          <span className="w-2 h-2 rounded-full bg-primary" />
           {label}
         </span>
       )}
-      <div className="w-10 h-1 rounded-full bg-gradient-to-r from-primary to-secondary mx-auto mb-5" />
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient mb-4">
+      <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight ${
+        dark ? 'text-white' : 'text-gray-900'
+      }`}>
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg text-gray-400 leading-relaxed">{subtitle}</p>
+        <p className={`text-lg leading-relaxed ${dark ? 'text-gray-300' : 'text-gray-600'}`}>{subtitle}</p>
       )}
     </motion.div>
   )

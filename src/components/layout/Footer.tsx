@@ -6,23 +6,23 @@ const footerLinks = {
   Product: [
     { label: 'Features', href: '/#features' },
     { label: 'Pricing', href: '/pricing' },
-    { label: 'Integrations', href: '#' },
-    { label: 'Changelog', href: '#' },
+    { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'FAQ', href: '/#faq' },
   ],
   Solutions: [
-    { label: 'Retail', href: '#' },
-    { label: 'Healthcare', href: '#' },
-    { label: 'Hospitality', href: '#' },
-    { label: 'Education', href: '#' },
+    { label: 'Retail', href: '/solutions#retail' },
+    { label: 'Healthcare', href: '/solutions#healthcare' },
+    { label: 'Hospitality', href: '/solutions#hospitality' },
+    { label: 'Education', href: '/solutions#education' },
   ],
   Resources: [
-    { label: 'Blog', href: '#' },
-    { label: 'Help Center', href: '#' },
-    { label: 'API Docs', href: '#' },
-    { label: 'System Status', href: '#' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Help Center', href: '/contact' },
+    { label: 'API Docs', href: '/contact' },
+    { label: 'System Status', href: '/contact' },
   ],
   Company: [
-    { label: 'About', href: '#' },
+    { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
     { label: 'Privacy', href: '/privacy' },
     { label: 'Terms', href: '/terms' },
@@ -30,30 +30,26 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: FaTwitter, href: '#', label: 'Twitter' },
-  { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-  { icon: FaYoutube, href: '#', label: 'YouTube' },
-  { icon: FaFacebookF, href: '#', label: 'Facebook' },
+  { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter' },
+  { icon: FaLinkedinIn, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: FaYoutube, href: 'https://youtube.com', label: 'YouTube' },
+  { icon: FaFacebookF, href: 'https://facebook.com', label: 'Facebook' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="relative bg-surface text-gray-400 pt-16 pb-8 overflow-hidden">
-      {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-
-      <Container className="relative">
+    <footer className="bg-accent text-gray-400 pt-16 pb-8">
+      <Container>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 text-white font-bold text-lg mb-4 no-underline">
-              <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+              <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-md shadow-primary/20">
                 <span className="text-white text-sm font-bold">Z</span>
               </div>
               ZDOM
             </Link>
-            <p className="text-sm mb-6">
+            <p className="text-sm mb-6 text-gray-400">
               The modern digital signage platform for businesses of all sizes.
             </p>
             {/* Newsletter */}
@@ -67,7 +63,7 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg hover:shadow-primary/25 transition-all cursor-pointer"
+                  className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors cursor-pointer"
                 >
                   Subscribe
                 </button>
@@ -103,8 +99,10 @@ export default function Footer() {
               <a
                 key={social.label}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-9 h-9 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:shadow-lg hover:shadow-primary/20 hover:scale-110 transition-all no-underline"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white hover:border-primary hover:scale-110 transition-all no-underline"
               >
                 <social.icon size={16} />
               </a>

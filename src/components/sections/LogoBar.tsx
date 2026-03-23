@@ -7,20 +7,17 @@ const logos = [
 
 export default function LogoBar() {
   return (
-    <section className="py-12 bg-surface-light/50 border-y border-white/5">
+    <section className="py-12 bg-white border-y border-gray-100">
       <Container>
-        <p className="text-center text-sm text-gray-500 font-medium mb-8 uppercase tracking-wider">
+        <p className="text-center text-sm text-gray-400 font-medium mb-8 uppercase tracking-wider">
           Trusted by leading brands worldwide
         </p>
       </Container>
       <div className="overflow-hidden fade-mask">
         <div className="animate-marquee flex items-center gap-16 whitespace-nowrap">
           {[...logos, ...logos].map((name, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center px-6"
-            >
-              <span className="text-xl font-bold text-gray-600 hover:text-white tracking-wide select-none transition-colors duration-300">
+            <div key={i} className="flex items-center justify-center px-6">
+              <span className="text-xl font-bold text-gray-200 hover:text-primary tracking-wide select-none transition-colors duration-300">
                 {name}
               </span>
             </div>

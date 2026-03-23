@@ -5,6 +5,9 @@ import HomePage from './pages/HomePage'
 import PricingPage from './pages/PricingPage'
 import ContactPage from './pages/ContactPage'
 import LegalPages from './pages/LegalPages'
+import AboutPage from './pages/AboutPage'
+import SolutionsPage from './pages/SolutionsPage'
+import BlogPage from './pages/BlogPage'
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<LegalPages page="privacy" />} />
           <Route path="/terms" element={<LegalPages page="terms" />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
         </Routes>
       </main>
       <Footer />

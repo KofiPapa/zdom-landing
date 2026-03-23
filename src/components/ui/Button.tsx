@@ -1,20 +1,20 @@
 import { type ButtonHTMLAttributes, type AnchorHTMLAttributes } from 'react'
 
-type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'white'
+type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'dark'
 type Size = 'sm' | 'md' | 'lg'
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-gradient-to-r from-primary via-primary-light to-secondary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 btn-shimmer',
-  secondary: 'bg-gradient-to-r from-secondary to-secondary-light text-white shadow-lg shadow-secondary/25 hover:shadow-xl hover:shadow-secondary/40 hover:-translate-y-0.5 btn-shimmer',
-  outline: 'border border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:-translate-y-0.5',
-  ghost: 'text-gray-300 hover:text-white hover:bg-white/5',
-  white: 'bg-white text-surface font-bold shadow-lg hover:shadow-xl hover:shadow-white/20 hover:-translate-y-0.5',
+  primary: 'bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 btn-shimmer',
+  secondary: 'bg-secondary text-white shadow-lg shadow-secondary/20 hover:bg-secondary-dark hover:shadow-xl hover:-translate-y-0.5 btn-shimmer',
+  outline: 'border-2 border-accent text-accent hover:bg-accent hover:text-white hover:-translate-y-0.5',
+  ghost: 'text-gray-700 hover:text-primary hover:bg-orange-50',
+  dark: 'bg-accent text-white shadow-lg hover:bg-gray-800 hover:-translate-y-0.5',
 }
 
 const sizeClasses: Record<Size, string> = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-2.5 text-base',
-  lg: 'px-8 py-3.5 text-lg',
+  sm: 'px-5 py-2 text-sm',
+  md: 'px-7 py-3 text-base',
+  lg: 'px-9 py-4 text-lg',
 }
 
 type ButtonProps = {
