@@ -21,15 +21,17 @@ export default function SectionHeading({
       className="text-center max-w-3xl mx-auto mb-16"
     >
       {label && (
-        <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-3">
+        <span className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-primary-light font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full mb-4">
+          <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-secondary animate-pulse" />
           {label}
         </span>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+      <div className="w-10 h-1 rounded-full bg-gradient-to-r from-primary to-secondary mx-auto mb-5" />
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient mb-4">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg text-gray-600 leading-relaxed">{subtitle}</p>
+        <p className="text-lg text-gray-400 leading-relaxed">{subtitle}</p>
       )}
     </motion.div>
   )

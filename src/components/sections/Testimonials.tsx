@@ -12,8 +12,12 @@ export default function Testimonials() {
   const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1))
 
   return (
-    <section className="py-20 lg:py-28 bg-slate-50">
-      <Container>
+    <section className="relative py-20 lg:py-28 bg-surface overflow-hidden">
+      {/* Decorative quote marks */}
+      <div className="absolute top-20 left-10 text-[200px] font-serif text-white/3 leading-none pointer-events-none select-none">"</div>
+      <div className="absolute bottom-10 right-10 text-[200px] font-serif text-white/3 leading-none pointer-events-none select-none rotate-180">"</div>
+
+      <Container className="relative">
         <SectionHeading
           label="Testimonials"
           title="Loved by Businesses Worldwide"
@@ -29,21 +33,21 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+              className="glass glass-hover rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, j) => (
                   <MdStar key={j} className="text-yellow-400" size={18} />
                 ))}
               </div>
-              <p className="text-gray-600 mb-6 leading-relaxed text-sm">"{t.quote}"</p>
+              <p className="text-gray-300 mb-6 leading-relaxed text-sm">"{t.quote}"</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-primary/20">
                   {t.avatar}
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900 text-sm">{t.name}</div>
-                  <div className="text-xs text-gray-500">{t.role}, {t.company}</div>
+                  <div className="font-semibold text-white text-sm">{t.name}</div>
+                  <div className="text-xs text-gray-400">{t.role}, {t.company}</div>
                 </div>
               </div>
             </motion.div>
@@ -59,21 +63,21 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+              className="glass rounded-2xl p-6"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, j) => (
                   <MdStar key={j} className="text-yellow-400" size={18} />
                 ))}
               </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">"{testimonials[current].quote}"</p>
+              <p className="text-gray-300 mb-6 leading-relaxed">"{testimonials[current].quote}"</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white font-bold flex items-center justify-center text-sm">
                   {testimonials[current].avatar}
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">{testimonials[current].name}</div>
-                  <div className="text-sm text-gray-500">
+                  <div className="font-semibold text-white">{testimonials[current].name}</div>
+                  <div className="text-sm text-gray-400">
                     {testimonials[current].role}, {testimonials[current].company}
                   </div>
                 </div>
@@ -82,7 +86,7 @@ export default function Testimonials() {
           </AnimatePresence>
 
           <div className="flex items-center justify-center gap-4 mt-6">
-            <button onClick={prev} className="p-2 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 cursor-pointer">
+            <button onClick={prev} className="p-2 rounded-full glass text-gray-300 hover:text-white cursor-pointer">
               <MdChevronLeft size={20} />
             </button>
             <div className="flex gap-2">
@@ -90,12 +94,12 @@ export default function Testimonials() {
                 <div
                   key={i}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    i === current ? 'bg-primary' : 'bg-gray-300'
+                    i === current ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-white/20'
                   }`}
                 />
               ))}
             </div>
-            <button onClick={next} className="p-2 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 cursor-pointer">
+            <button onClick={next} className="p-2 rounded-full glass text-gray-300 hover:text-white cursor-pointer">
               <MdChevronRight size={20} />
             </button>
           </div>

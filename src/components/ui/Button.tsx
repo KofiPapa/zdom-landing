@@ -1,13 +1,14 @@
 import { type ButtonHTMLAttributes, type AnchorHTMLAttributes } from 'react'
 
-type Variant = 'primary' | 'secondary' | 'outline' | 'ghost'
+type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'white'
 type Size = 'sm' | 'md' | 'lg'
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/25',
-  secondary: 'bg-secondary text-white hover:bg-secondary-dark shadow-lg shadow-secondary/25',
-  outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
-  ghost: 'text-gray-700 hover:text-primary hover:bg-gray-100',
+  primary: 'bg-gradient-to-r from-primary via-primary-light to-secondary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 btn-shimmer',
+  secondary: 'bg-gradient-to-r from-secondary to-secondary-light text-white shadow-lg shadow-secondary/25 hover:shadow-xl hover:shadow-secondary/40 hover:-translate-y-0.5 btn-shimmer',
+  outline: 'border border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:-translate-y-0.5',
+  ghost: 'text-gray-300 hover:text-white hover:bg-white/5',
+  white: 'bg-white text-surface font-bold shadow-lg hover:shadow-xl hover:shadow-white/20 hover:-translate-y-0.5',
 }
 
 const sizeClasses: Record<Size, string> = {
@@ -30,7 +31,7 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 cursor-pointer ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
+  const classes = `inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 cursor-pointer ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
 
   if (href) {
     return (

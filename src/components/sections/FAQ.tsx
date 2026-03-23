@@ -10,8 +10,10 @@ export default function FAQ() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-white">
-      <Container>
+    <section id="faq" className="relative py-20 lg:py-28 bg-gray-950 overflow-hidden">
+      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+
+      <Container className="relative">
         <SectionHeading
           label="FAQ"
           title="Frequently Asked Questions"
@@ -28,15 +30,15 @@ export default function FAQ() {
           {faqItems.map((item) => (
             <Disclosure key={item.question}>
               {({ open }) => (
-                <div className={`rounded-xl border transition-colors ${open ? 'border-primary/30 bg-primary/5' : 'border-gray-200 bg-white'}`}>
+                <div className={`rounded-xl transition-all duration-300 ${open ? 'glass border-primary/30 bg-primary/5' : 'glass'}`}>
                   <DisclosureButton className="flex items-center justify-between w-full px-6 py-4 text-left cursor-pointer bg-transparent border-none">
-                    <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
+                    <span className="font-semibold text-white pr-4">{item.question}</span>
                     <MdExpandMore
                       size={24}
-                      className={`text-gray-500 transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`}
+                      className={`text-gray-400 transition-transform duration-300 flex-shrink-0 ${open ? 'rotate-180 text-primary-light' : ''}`}
                     />
                   </DisclosureButton>
-                  <DisclosurePanel className="px-6 pb-4 text-gray-600 leading-relaxed">
+                  <DisclosurePanel className="px-6 pb-4 text-gray-400 leading-relaxed">
                     {item.answer}
                   </DisclosurePanel>
                 </div>

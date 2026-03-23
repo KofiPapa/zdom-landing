@@ -29,8 +29,10 @@ export default function HowItWorks() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 })
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 bg-white">
-      <Container>
+    <section id="how-it-works" className="relative py-20 lg:py-28 bg-gray-950 overflow-hidden">
+      <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+
+      <Container className="relative">
         <SectionHeading
           label="How It Works"
           title="Up and Running in 3 Simple Steps"
@@ -38,24 +40,29 @@ export default function HowItWorks() {
         />
         <div ref={ref} className="relative grid md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {/* Connecting line */}
-          <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-primary via-secondary to-primary" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-primary via-secondary to-accent origin-left"
+          />
 
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.2 }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.25 }}
               className="relative text-center"
             >
-              <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl text-white mb-6 shadow-lg shadow-primary/25">
-                <step.icon size={32} />
-                <span className="absolute -top-2 -right-2 w-7 h-7 bg-secondary text-white text-xs font-bold rounded-full flex items-center justify-center">
+              <div className="relative inline-flex items-center justify-center w-24 h-24 glass rounded-2xl text-white mb-6 shadow-lg shadow-primary/10">
+                <step.icon size={36} className="text-primary-light" />
+                <span className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg shadow-secondary/30">
                   {step.step}
                 </span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{step.description}</p>
+              <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+              <p className="text-gray-400 leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
         </div>

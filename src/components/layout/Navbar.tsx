@@ -25,13 +25,13 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? 'bg-white/95 backdrop-blur-md shadow-sm'
+          ? 'bg-surface/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10'
           : 'bg-transparent'
       }`}
     >
       <Container className="flex items-center justify-between h-16 lg:h-20">
-        <Link to="/" className="flex items-center gap-2 text-xl font-bold text-gray-900 no-underline">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+        <Link to="/" className="flex items-center gap-2.5 text-xl font-bold text-white no-underline">
+          <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/30">
             <span className="text-white text-sm font-bold">Z</span>
           </div>
           ZDOM
@@ -43,9 +43,10 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-gray-600 hover:text-primary font-medium transition-colors no-underline text-sm"
+              className="relative text-gray-400 hover:text-white font-medium transition-colors no-underline text-sm group"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>
@@ -61,7 +62,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 text-gray-700"
+          className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -71,19 +72,19 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div className="md:hidden bg-surface/95 backdrop-blur-xl border-t border-white/5">
           <Container className="py-4 flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-gray-700 hover:text-primary font-medium py-2 no-underline"
+                className="text-gray-300 hover:text-white font-medium py-2 no-underline transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <hr className="border-gray-100" />
+            <hr className="border-white/10" />
             <Button variant="ghost" size="sm" href="https://zdashboard.vercel.app/login">
               Sign In
             </Button>

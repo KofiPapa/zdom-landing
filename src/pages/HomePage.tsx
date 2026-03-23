@@ -10,7 +10,7 @@ import CTA from '../components/sections/CTA'
 
 export default function HomePage() {
   return (
-    <>
+    <div className="bg-surface">
       <Hero />
       <LogoBar />
       <Features />
@@ -20,6 +20,6 @@ export default function HomePage() {
       <Testimonials />
       <FAQ />
       <CTA />
-    </>
+    </div>
   )
 }

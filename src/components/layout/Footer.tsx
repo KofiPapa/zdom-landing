@@ -38,13 +38,17 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-400 pt-16 pb-8">
-      <Container>
+    <footer className="relative bg-surface text-gray-400 pt-16 pb-8 overflow-hidden">
+      {/* Top gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+
+      <Container className="relative">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="flex items-center gap-2 text-white font-bold text-lg mb-4 no-underline">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <Link to="/" className="flex items-center gap-2.5 text-white font-bold text-lg mb-4 no-underline">
+              <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
                 <span className="text-white text-sm font-bold">Z</span>
               </div>
               ZDOM
@@ -59,11 +63,11 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 flex-1 min-w-0 outline-none focus:border-primary"
+                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 flex-1 min-w-0 outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors"
+                  className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg hover:shadow-primary/25 transition-all cursor-pointer"
                 >
                   Subscribe
                 </button>
@@ -92,7 +96,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm">&copy; {new Date().getFullYear()} ZDOM. All rights reserved.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
@@ -100,7 +104,7 @@ export default function Footer() {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all no-underline"
+                className="w-9 h-9 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:shadow-lg hover:shadow-primary/20 hover:scale-110 transition-all no-underline"
               >
                 <social.icon size={16} />
               </a>
