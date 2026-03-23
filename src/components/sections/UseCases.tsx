@@ -68,14 +68,25 @@ export default function UseCases() {
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-blue-50 rounded-2xl aspect-square flex items-center justify-center border border-gray-100 shadow-sm">
-              <motion.span
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="text-8xl"
-              >
-                {active.image}
-              </motion.span>
+
+            {/* Real image instead of emoji */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/50 border border-gray-100">
+              <motion.img
+                key={active.image}
+                src={active.image}
+                alt={active.title}
+                className="w-full aspect-[16/10] object-cover"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+              {/* Bottom gradient with label */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  Live ZDOM Installation
+                </span>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
